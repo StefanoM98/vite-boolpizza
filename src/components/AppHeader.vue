@@ -12,14 +12,6 @@ export default {
                     label: "Pizzas",
                     routeName: "pizzas"
                 },
-                {
-                    label: "About us",
-                    routeName: "about"
-                },
-                {
-                    label: "Contact us",
-                    routeName: "contact"
-                }
             ]
         }
     }

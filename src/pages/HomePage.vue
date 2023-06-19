@@ -1,10 +1,7 @@
 <script>
-// import AppHeader from '../components/AppHeader.vue';
 export default {
     name: "HomePage",
-    components: {
-        AppHeader
-    }
+
 }
 </script>
 
@@ -13,8 +10,7 @@ export default {
 
     </div>
     <div class="macrocontainer">
-        
-        <AppHeader />
+
         <div class="wrapper container ">
 
             <div class="row row-cols-3 flex-column  ">
