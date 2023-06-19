@@ -1,17 +1,15 @@
 <script >
 import axios from 'axios';
-import ProjectCard from '../components/ProjectCard.vue';
+import PizzaCard from '../components/PizzaCard.vue';
 // import LoadingPage from '../components/LoadingPage.vue';
 // import Pagination from '../components/Pagination.vue';
-import AppHeader from '../components/AppHeader.vue';
 
 export default {
     name: 'App',
     components: {
-        ProjectCard,
+        PizzaCard,
         // LoadingPage,
         // Pagination,
-        AppHeader
     },
 
     data() {
@@ -33,25 +31,19 @@ export default {
         this.getTopping();
     },
     methods: {
-        getProject(pageNumber = 1) {
+        getPizza(pageNumber = 1) {
             this.loading = true;
 
             const params = {
                 page: pageNumber,
             }
 
-            if (this.typeSelected !== 'TUTTI') {
-                params.type_id = this.typeSelected;
-            }
 
-            if (this.technologySelected.length > 0) {
-                params.technologies = this.technologySelected;
-
-            }
 
             axios
-                .get(`${this.myApi}/api/projects`, { params })
+                .get(`${this.myApi}/api/pizzas`, { params })
                 .then(resp => {
+                    console.log(resp);
                     this.pizzas = resp.data.results.data;
                     this.datiArray.currentPage = resp.data.results.current_page;
                     this.datiArray.lastPage = resp.data.results.last_page;
@@ -76,8 +68,6 @@ export default {
 </script>
 
 <template>
-    <AppHeader />
-
     <div class="container">
         <section>
             <h1 class="text-center my-2 container ">Lista delle pizze :</h1>
@@ -87,7 +77,7 @@ export default {
             <p class="project-number me-4">
                 Trovate : {{ totalPizzas }} pizze
             </p>
-            
+
             <!-- PizzaCard Component -->
             <div class="d-flex flex-row flex-wrap gap-3">
                 <div class="project " v-for="pizza in pizzas" :key="pizza.id">
@@ -95,12 +85,12 @@ export default {
                 </div>
             </div>
             <!-- /PizzaCard Component -->
-            
-            
+
+
             <!-- Handle pagination -->
-            <Pagination :datiArray="datiArray" @dati="getProject" />
+            <Pagination :datiArray="datiArray" @dati="getPizza" />
             <!-- /Handle pagination -->
-            
+
         </section>
 
     </div>
@@ -110,7 +100,6 @@ export default {
 
 <style lang="scss">
 @use "../style/general.scss" as *;
-@use "../style/partials/variables" as *;
 
 section {
     color: rgb(153, 253, 13);

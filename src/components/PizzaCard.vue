@@ -2,7 +2,7 @@
 
 
 export default {
-  name: 'ProjectCard',
+  name: 'PizzaCard',
   props: {
     myProject: Object
 
@@ -41,7 +41,7 @@ export default {
 <template>
   <div class="card d-flex flex-column">
 
-    <img v-show="myProject.image" :src="imgSrc" :alt="myProject.title" />
+    <img v-show="myProject.image" :src="imgSrc" :alt="myProject.taste" />
     <div v-if="isThere" class="position-relative">
       <img class="w-100" src="https://pbs.twimg.com/media/FS8zh8laQAAjjkK.jpg" alt="">
       <p class="position-absolute top-50 start-50 translate-middle text-white">IMMAGINE NON TROVATA</p>
@@ -49,8 +49,9 @@ export default {
 
 
     <div class="card-body d-flex flex-column mt-3">
-      <h6 class="my-2"><span>Nome: </span> {{ myProject.title }}</h6>
-
+      <h6 class="my-2"><span>Nome: </span> {{ myProject.taste }}</h6>
+      <h6 class="my-2"><span>Tipo: </span> {{ myProject.tipe }}</h6>
+      <h6 class="my-2"><span>Prezzo: </span> {{ myProject.price }}</h6>
 
       <div v-if="myProject.toppings && myProject.toppings.length > 0">
         <span>Ingredienti usati:</span>
